@@ -23,6 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 /backend/complaints/
 
-__pycache__/
+/backend/__pycache__/
 
 migrations/

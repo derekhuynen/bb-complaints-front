@@ -92,5 +92,5 @@ Maps.defaultProps = {
 }
 
 export default GoogleApiWrapper({
-        apiKey: 'AIzaSyCPnD2rgmnentLL6PxjFr8oa9tMEatF0Mg'
-    })(Maps)
+    apiKey: 'AIzaSyCPnD2rgmnentLL6PxjFr8oa9tMEatF0Mg'
+})(Maps)
