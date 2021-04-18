@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/jaspersha/Projects/bigbearappfrontend/backend/complaints"
+VIRTUAL_ENV="/home/jaspersha/Projects/bb-complaints-front/backend/complaints"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

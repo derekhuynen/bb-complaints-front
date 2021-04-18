@@ -6,14 +6,14 @@ import json
 from decimal import Decimal
 import random
 
-all_houses = Blueprint('/all', __name__,)
+houses = Blueprint('/all', __name__,)
 
 def default(obj):
     if isinstance(obj, Decimal):
         return str(obj)
     raise TypeError("Object of type '%s' is not JSON serializable" % type(obj).__name__)
 
-@all_houses.route('/all', methods=['GET'])
+@houses.route('/all', methods=['GET'])
 def query_all():
     '''
     Query all houses
@@ -43,6 +43,7 @@ def query_all():
                             'street': house.street,
                             'city': house.city,
                             'zipcode': house.zipcode,
+                            'license': house.license,
                             'expiration': house.expiration
                         }
                 } for house in houses ]

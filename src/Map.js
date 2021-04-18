@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {json as requestJson} from 'd3-request'
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react'
 import InfoWindowEx from './InfoWindowEx'
 
@@ -13,7 +14,8 @@ export class Maps extends Component {
         locRendered: false,
         showingInfoWindow: false,
         activeMarker: {},
-        selectedPlace: {}
+        selectedPlace: {},
+        houses: []
     }
 
     getUserLocation = () => {
@@ -44,37 +46,65 @@ export class Maps extends Component {
         this.getUserLocation()
     }
 
-    render() {
-        return (
-            <div>
-                {this.state.locRendered ? (
-                    <Map
-                        google={this.props.google}
-                        zoom={14}
-                        styles={this.props.mapStyles}
-                        disableDefaultUI={true}
-                        onDragend={this.centerMoved}
-                        initialCenter={{
-                            lat: this.state.loc_x,
-                            lng: this.state.loc_y
-                        }}
-                    >
-
-                        <Marker
-                            position={{ lat: 34.2360064, lng: -116.90311679999999 }}
-                            title={"Hello"}
-                            onClick={this.onMarkerClick}
-                        />
-
-                        <InfoWindowEx marker={this.state.activeMarker} visible={this.state.showingInfoWindow}>
-                            <div>
-                                HELLO!
-                            </div>
-                        </InfoWindowEx>
-                    </Map>
-                ) : null}
-            </div>
+    componentDidMount() {
+        fetch("http://localhost:5000/api/all")
+        .then(res => res.json())
+        .then(
+            (result) => {
+                this.setState({
+                    isLoaded: true,
+                    houses: result.houses
+                });
+            },
+            (error) => {
+                this.setState({
+                    isLoaded: true,
+                    error
+                });
+            }
         )
+    }
+
+    render() {
+        const { error, isLoaded, houses } = this.state;
+        if (error) {
+            return <div>Error: {error.message}</div>
+        } else if (!isLoaded) {
+            return <div>Loading...</div>;
+        }else {
+            return (
+                <div>
+                    
+                    {this.state.locRendered ? (
+                        <Map
+                            google={this.props.google}
+                            zoom={14}
+                            styles={this.props.mapStyles}
+                            disableDefaultUI={true}
+                            onDragend={this.centerMoved}
+                            initialCenter={{
+                                lat: this.state.loc_x,
+                                lng: this.state.loc_y
+                            }}
+                        >
+    
+                            <Marker
+                                position={{ lat: 34.2360064, lng: -116.90311679999999 }}
+                                title={"Hello"}
+                                onClick={this.onMarkerClick}
+                            />
+    
+                            <InfoWindowEx marker={this.state.activeMarker} visible={this.state.showingInfoWindow}>
+                                <div>
+                                    HELLO!
+                                </div>
+                            </InfoWindowEx>
+                        </Map>
+                    ) : null}
+                </div>
+            )
+        }
+
     }
     onMarkerClick = (props, marker) => {
         this.setState({

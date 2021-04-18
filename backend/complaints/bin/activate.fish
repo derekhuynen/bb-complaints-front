@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/jaspersha/Projects/bigbearappfrontend/backend/complaints"
+set -gx VIRTUAL_ENV "/home/jaspersha/Projects/bb-complaints-front/backend/complaints"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
