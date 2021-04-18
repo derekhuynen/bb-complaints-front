@@ -1,0 +1,4 @@
+{
+    "python.pythonPath": "backend/complaints/bin/activate",
+    "python.linting.pylintPath": "backend/complaints/bin/pylint"
+}

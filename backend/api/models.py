@@ -2,7 +2,7 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from . import db
-from sqlalchemy import Column, Numeric, create_engine
+from sqlalchemy import Column, Numeric, Integer, String, create_engine
 
 
 class House(db.Model):
@@ -17,6 +17,8 @@ class House(db.Model):
     longitude = Column(Numeric(7, 4))
     latitude = Column(Numeric(6, 4))
 
+    license = Column(String(20))
+
     expiration = Column(String(30))
 
     def __init__(self, id):
@@ -29,7 +31,7 @@ class House(db.Model):
     
     def __repr__(self):
         return 'House address=%s %s, lng=%s, lat=%s'%(self.street, self.city, self.longitude, self.latitude)
-        
+
 
     
 
