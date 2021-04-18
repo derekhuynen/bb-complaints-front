@@ -39,9 +39,10 @@ export class Maps extends Component {
             latitude: map.center.lat(),
             longitude: map.center.lng()
         })
+        
     }
 
-    componentWillMount() {
+    componentDidMount() {
 
         this.getUserLocation()
 
@@ -52,10 +53,8 @@ export class Maps extends Component {
                     this.setState({
                         isLoaded: true,
                         houses: result.features,
-
+                        
                     });
-
-
                 },
                 (error) => {
                     this.setState({
@@ -67,17 +66,14 @@ export class Maps extends Component {
 
     }
 
+
     render() {
 
         return (
 
-
             <div>
 
-
-
                 {this.state.locRendered ? (
-                    console.log(this.houses),
                     <Map
                         google={this.props.google}
                         zoom={15}
@@ -91,6 +87,17 @@ export class Maps extends Component {
                             lng: this.state.longitude
                         }}
                     >
+                        {this.state.houses.map(house => (
+                                <Marker
+                                key={house.properties.id}
+                                position={{lat: house.geometry.coordinates[1], lng: house.geometry.coordinates[0]}}
+                                onClick={this.onMarkerClick}
+                                icon={{url: "/marker.svg",
+                                scaledSize: new window.google.maps.Size(12, 12)}}
+                                />
+                            
+                            
+                        ))}
                         <Marker
                             position={{ lat: 34.2370064, lng: -116.90731679999999 }}
                             address={"Address: 123 Walker Street"}
