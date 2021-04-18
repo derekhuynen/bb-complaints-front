@@ -7,6 +7,7 @@ import InfoWindowEx from './InfoWindowEx'
 export class Maps extends Component {
 
     state = {
+        houses: [],
         startLatitude: 0,
         startLongitude: 0,
         latitude: 0,
@@ -41,13 +42,42 @@ export class Maps extends Component {
     }
 
     componentWillMount() {
+
         this.getUserLocation()
+
+        fetch("http://localhost:5000/api/all")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        houses: result.features,
+
+                    });
+
+
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
+
     }
 
     render() {
+
         return (
+
+
             <div>
+
+
+
                 {this.state.locRendered ? (
+                    console.log(this.houses),
                     <Map
                         google={this.props.google}
                         zoom={15}
