@@ -7,6 +7,8 @@ import InfoWindowEx from './InfoWindowEx'
 export class Maps extends Component {
 
     state = {
+        startLatitude: 0,
+        startLongitude: 0,
         latitude: 0,
         longitude: 0,
         locRendered: false,
@@ -22,8 +24,11 @@ export class Maps extends Component {
 
     showPosition = position => {
         this.setState({
+            startLatitude: position.coords.latitude,
+            startLongitude: position.coords.longitude,
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
+
             locRendered: true,
         })
     }
@@ -57,15 +62,25 @@ export class Maps extends Component {
                         }}
                     >
                         <Marker
-                            position={{ lat: 34.2360064, lng: -116.90311679999999 }}
-                            address={"123 Walker Street"}
+                            position={{ lat: 34.2370064, lng: -116.90731679999999 }}
+                            address={"Address: 123 Walker Street"}
                             onClick={this.onMarkerClick}
                             icon={{url: "/marker.svg",
                                 scaledSize: new window.google.maps.Size(12, 12)}}
                         />
+
+                        <Marker
+                            position={{ lat: this.state.startLatitude, lng: this.state.startLongitude }}
+                            address={"This is you!"}
+                            onClick={this.onMarkerClick}
+                            icon={{url: "/myLocation.svg",
+                                scaledSize: new window.google.maps.Size(12, 12)}}
+                        />
+
+
                         <InfoWindowEx marker={this.state.activeMarker} visible={this.state.showingInfoWindow}>
                             <div>
-                                <h3>Address: {this.state.activeMarker.address}</h3>
+                                <h3>{this.state.activeMarker.address}</h3>
                             </div>
                         </InfoWindowEx>
                     </Map>
