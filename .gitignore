@@ -22,9 +22,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 /backend/complaints/
-
 /backend/__pycache__/
 
 migrations/
 
 .idea
+
+.flaskenv
