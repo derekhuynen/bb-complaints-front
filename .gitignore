@@ -34,5 +34,4 @@ migrations/
 
 .flaskenv
 
-/backend/migrations
 *.pyc
