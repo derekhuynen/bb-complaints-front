@@ -29,4 +29,7 @@ migrations/
 
 .idea
 
+
 .flaskenv
+
+/backend/migrations
