@@ -1,4 +1,4 @@
-Number, Address, Application/ License, Expiration Date
+street,city,state,zipcode,latitude,longitude,license,expiration
 43246 Deer Canyon Rd,Big Bear Lake,CA,92315,34.2326818,-116.8586447,BCA-103850,8/12/2021
 42350 Heavenly Valley Rd,Big Bear Lake,CA,92315,34.2401209,-116.8782425,BCA-104593,12/3/2021
 744 Summit Blvd,Big Bear Lake,CA,92315,34.2387847,-116.8888031,BCA-105028,2/13/2022

@@ -12,6 +12,7 @@ class House(db.Model):
 
     street = Column(String(50))
     city = Column(String(20))
+    state = Column(String(2))
     zipcode = Column(String(10))
 
     longitude = Column(Numeric(7, 4))
@@ -21,8 +22,15 @@ class House(db.Model):
 
     expiration = Column(String(30))
 
-    def __init__(self, id):
-        self.id = id
+    def __init__(self, street, city, state, zipcode, license, expiration, longitude, latitude):
+        self.street = street
+        self.city = city
+        self.state = state
+        self.zipcode = zipcode
+        self.license = license
+        self.expiration = expiration
+        self.longitude = longitude
+        self.latitude = latitude
 
     def update(self, **kwargs):
         for key, value in kwargs.items():

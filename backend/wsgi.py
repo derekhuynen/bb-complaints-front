@@ -3,6 +3,7 @@ entry point
 '''
 from api import create_app, db
 from api.models import House
+from api.push_data import push
 
 app = create_app()
 @app.shell_context_processor
